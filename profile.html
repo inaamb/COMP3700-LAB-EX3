@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <title>Profile</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg bg-success">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse justify-content-center">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link active text-light" href="login.html">Log in</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="profile.html">Profile</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="calculation.html">Age calculator</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="container py-5">
+            <div class="card bg-secondary" style="width:400px">
+                    <div class="container py-4"><!--so we can see the edges of the grey card-->
+                    <img id="cardImage"class="card-img-top rounded" height="300px" src="emma.webp" alt="Card image" >
+                    </div>
+                    <div class="card-body">
+                     <h4 id="cardTitle"class="card-title"> Emma Stone</h4>
+                     <div id="cardText"class="card-text">American actress</div>
+                    </div>
+            </div>
+            <div>                                                                                      <!--ms is margin start-->
+                <img src="arrow_back.png"  height="100px" onclick="changeImg(-1)" alt="Previous" class="ms-5">
+                <span id="position">0</span>
+                <img src="arrow_forward.png" height="100px" onclick="changeImg(1)" alt="Next" >
+                
+            </div>
+        </div>  
+        </main>
+        
+    </body>
+    <script type="text/JavaScript">
+        var currentIndex=0; 
+        function changeImg(direction){
+            const cardImages=["emma.webp","hugh.jpg","kevin.jfif"];
+            const cardTitles=["Emma Stone","Hugh Laurie","Kevin James"];
+            const cardTexts=["American actress","English Actor","American actor"];
+
+            currentIndex= currentIndex+ direction;//so for forward arrow once you click it go from 0 to be 1 then 2 then 0 then 1 then 2...
+            //for back since we want it to go from 0 to 2, the first time it'll be -1 (which will set it back to 2 in the else if condition) 0 to 2 to 1(beacause 2-1) to 0..
+            //now we have to set the limits of the arrows.
+            if(currentIndex>=cardImages.length){//so when it reaches 3
+                currentIndex=0//we set it back to 0 so it starts from the beggining.
+            }
+            else if(currentIndex<0){//so when it goes under 0
+                currentIndex= cardImages.length -1;//we set it back to 2. 
+            }
+            
+            
+            document.getElementById("cardImage").src=cardImages[currentIndex];
+            document.getElementById("cardTitle").innerText=cardTitles[currentIndex];
+            document.getElementById("cardText").innerText=cardTexts[currentIndex];
+            document.getElementById("position").innerText=currentIndex;
+            
+        }
+    </script>
+
+</html>
